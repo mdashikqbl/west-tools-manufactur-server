@@ -20,6 +20,8 @@ async function run() {
         await client.connect();
         const toolCollection = client.db('westtools').collection('service');
         const orderCollection = client.db('westtools').collection('order');
+
+        // get all 
         app.get('/tool', async (req, res) => {
             const query = {};
             const cursor = toolCollection.find(query);
@@ -27,6 +29,7 @@ async function run() {
             res.send(tools);
 
         })
+        // get in id 
         app.get('/tool/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
